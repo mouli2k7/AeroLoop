@@ -5,7 +5,8 @@
   "main": "aeroloop-mvp.html",
   "scripts": {
     "start": "npx -y serve -l 3000 -s .",
-    "dev": "npx -y serve -l 3000 -s ."
+    "dev": "npx -y serve -l 3000 -s .",
+    "test": "node tests/e2e_verify.js"
   },
   "keywords": [
     "aeroloop",
@@ -13,5 +14,8 @@
     "mvp"
   ],
   "author": "mouli2k7",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^25.12.0"
+  }
 }

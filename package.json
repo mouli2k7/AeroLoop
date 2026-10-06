@@ -1,0 +1,17 @@
+{
+  "name": "aeroloop-mvp",
+  "version": "1.0.0",
+  "description": "AeroLoop - Drone Delivery Booking MVP",
+  "main": "aeroloop-mvp.html",
+  "scripts": {
+    "start": "npx -y serve -l 3000 -s .",
+    "dev": "npx -y serve -l 3000 -s ."
+  },
+  "keywords": [
+    "aeroloop",
+    "drone-delivery",
+    "mvp"
+  ],
+  "author": "mouli2k7",
+  "license": "ISC"
+}

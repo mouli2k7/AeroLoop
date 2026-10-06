@@ -614,6 +614,201 @@
       justify-content: center;
       gap: 0.4rem;
     }
+
+    /* ==========================================================================
+       AUTHENTICATED OPERATIONS CARD STYLES
+       ========================================================================== */
+    .auth-card-wrapper {
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .auth-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.25rem;
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 35px -5px rgba(0, 229, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--status-green), var(--accent-cyan), var(--accent-teal));
+    }
+
+    .auth-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .auth-user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-avatar-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(16, 185, 129, 0.2));
+      border: 1.5px solid var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    }
+
+    .user-avatar-badge svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .user-name-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .user-role-badge {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .telemetry-card {
+      background: rgba(8, 13, 25, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.2s;
+    }
+
+    .telemetry-card:hover {
+      border-color: rgba(0, 229, 255, 0.3);
+    }
+
+    .telemetry-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .telemetry-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .telemetry-meta {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+    }
+
+    .auth-actions-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(244, 63, 94, 0.12);
+      border-color: rgba(244, 63, 94, 0.4);
+      color: #fca5a5;
+    }
+
+    .btn-nav-logout {
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fca5a5;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-logout:hover {
+      background: rgba(244, 63, 94, 0.2);
+    }
+
+    .phase-callout-box {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(0, 180, 216, 0.03) 100%);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-callout-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .phase-callout-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
@@ -766,6 +961,77 @@
         </div>
       </div>
     </section>
+
+    <!-- SCREEN 1 (AUTHENTICATED): OPERATIONS COMMAND -->
+    <section id="screen-authenticated" class="screen" style="display: none;">
+      <div class="auth-card-wrapper">
+        <div class="auth-card">
+          <!-- Header -->
+          <div class="auth-header">
+            <div class="auth-user-info">
+              <div class="user-avatar-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div>
+                <h2 class="user-name-title">Welcome back, <span id="auth-user-name">Operator</span></h2>
+                <span class="user-role-badge" id="auth-user-role">Dark Store Operations • Sector 4</span>
+              </div>
+            </div>
+            <div class="phase-badge">
+              <span class="pulse-dot" style="background-color: var(--status-green); box-shadow: 0 0 8px var(--status-green);"></span>
+              <span>Airspace Live</span>
+            </div>
+          </div>
+
+          <!-- Telemetry Grid -->
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <span class="telemetry-label">Drone Fleet</span>
+              <span class="telemetry-value">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--status-green);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                3 / 3 Ready
+              </span>
+              <span class="telemetry-meta">Max payload 15 kg/unit</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-label">Flight Conditions</span>
+              <span class="telemetry-value" style="color: var(--accent-cyan);">Clear 4 kt</span>
+              <span class="telemetry-meta">BVLOS corridors nominal</span>
+            </div>
+            <div class="telemetry-card">
+              <span class="telemetry-label">Active Base Hub</span>
+              <span class="telemetry-value">Bengaluru 4</span>
+              <span class="telemetry-meta">Warehouse Resupply Link</span>
+            </div>
+          </div>
+
+          <!-- Phase 2 Handoff Callout -->
+          <div class="phase-callout-box">
+            <div class="phase-callout-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              Phase 1 Authentication Validated
+            </div>
+            <p class="phase-callout-desc">
+              Your operator credentials have been authenticated and saved to this session. You are authorized to dispatch aerial deliveries and calculate route tariffs.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="auth-actions-group">
+            <button type="button" id="btn-proceed-phase2" class="btn-primary" style="flex: 1;">
+              <span>Proceed to Book Delivery (Phase 2) →</span>
+            </button>
+            <button type="button" id="btn-logout" class="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- App Footer -->
@@ -773,5 +1039,222 @@
     <span>AeroLoop Prototype • IEB Section C Milestone 2</span>
     <span>Simulated Autonomous Delivery Portal</span>
   </footer>
+
+  <!-- ==========================================================================
+       AEROLOOP STATE & INTERACTION SCRIPT
+       ========================================================================== -->
+  <script>
+    /**
+     * AeroLoop Application State & Controller
+     */
+    const AppState = {
+      storageKey: 'aeroloop_session',
+      session: null,
+
+      init() {
+        // Read persisted session
+        const saved = localStorage.getItem(this.storageKey);
+        if (saved) {
+          try {
+            this.session = JSON.parse(saved);
+          } catch (e) {
+            this.session = null;
+          }
+        }
+
+        this.bindEvents();
+        this.render();
+      },
+
+      bindEvents() {
+        const loginForm = document.getElementById('login-form');
+        const emailInput = document.getElementById('login-email');
+        const passwordInput = document.getElementById('login-password');
+        const togglePwBtn = document.getElementById('btn-toggle-password');
+        const logoutBtn = document.getElementById('btn-logout');
+        const proceedPhase2Btn = document.getElementById('btn-proceed-phase2');
+        const chips = document.querySelectorAll('.persona-chip');
+
+        // Toggle Password Visibility
+        if (togglePwBtn && passwordInput) {
+          togglePwBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            togglePwBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+          });
+        }
+
+        // Quick-Fill Demo Chips
+        chips.forEach(chip => {
+          chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = chip.dataset.email;
+            const name = chip.dataset.name;
+            const role = chip.dataset.role;
+
+            if (emailInput) {
+              emailInput.value = email;
+              emailInput.focus();
+            }
+            if (passwordInput) {
+              passwordInput.value = 'demo12345';
+            }
+            this.hideAlert();
+          });
+        });
+
+        // Form Submit
+        if (loginForm) {
+          loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput ? emailInput.value.trim() : '';
+            const password = passwordInput ? passwordInput.value : '';
+            const remember = document.getElementById('login-remember')?.checked ?? true;
+
+            // Simple validation check
+            if (!email) {
+              this.showAlert('Please provide an operator work email to continue.');
+              emailInput?.focus();
+              return;
+            }
+
+            if (!email.includes('@')) {
+              this.showAlert('Please provide a valid email format (e.g. operator@aeroloop.io).');
+              emailInput?.focus();
+              return;
+            }
+
+            this.hideAlert();
+            this.login(email, password, remember);
+          });
+        }
+
+        // Sign Out from Operations card
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', () => {
+            this.logout();
+          });
+        }
+
+        // Proceed to Phase 2
+        if (proceedPhase2Btn) {
+          proceedPhase2Btn.addEventListener('click', () => {
+            alert('Phase 1 is complete! Phase 2 (Book a Delivery with instant pricing) will be activated next.');
+          });
+        }
+      },
+
+      showAlert(message) {
+        const alertEl = document.getElementById('login-alert');
+        const alertText = document.getElementById('login-alert-text');
+        if (alertEl && alertText) {
+          alertText.textContent = message;
+          alertEl.classList.add('visible');
+        }
+      },
+
+      hideAlert() {
+        const alertEl = document.getElementById('login-alert');
+        if (alertEl) {
+          alertEl.classList.remove('visible');
+        }
+      },
+
+      login(email, password, remember = true) {
+        const submitBtn = document.getElementById('btn-login-submit');
+        if (submitBtn) {
+          submitBtn.classList.add('loading');
+        }
+
+        // Determine friendly persona name from email
+        let displayName = email.split('@')[0].replace(/[._-]/g, ' ');
+        displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+        let role = 'Dark Store Logistics Lead';
+
+        if (email.includes('fleet') || email.includes('central')) {
+          displayName = 'Central Warehouse Ops';
+          role = 'Fleet Dispatcher';
+        } else if (email.includes('darkstore')) {
+          displayName = 'Dark Store Manager';
+          role = 'Dark Store Operations';
+        }
+
+        // Simulate micro biometric/handshake latency (350ms)
+        setTimeout(() => {
+          this.session = {
+            isAuthenticated: true,
+            email: email,
+            displayName: displayName,
+            role: role,
+            loggedInAt: Date.now()
+          };
+
+          if (remember) {
+            localStorage.setItem(this.storageKey, JSON.stringify(this.session));
+          }
+
+          if (submitBtn) {
+            submitBtn.classList.remove('loading');
+          }
+
+          this.render();
+        }, 350);
+      },
+
+      logout() {
+        this.session = null;
+        localStorage.removeItem(this.storageKey);
+
+        const emailInput = document.getElementById('login-email');
+        const passwordInput = document.getElementById('login-password');
+        if (emailInput) emailInput.value = '';
+        if (passwordInput) passwordInput.value = '';
+        this.hideAlert();
+
+        this.render();
+      },
+
+      render() {
+        const screenLogin = document.getElementById('screen-login');
+        const screenAuth = document.getElementById('screen-authenticated');
+        const sessionPill = document.getElementById('nav-session-pill');
+        const beacon = document.getElementById('nav-beacon');
+        const sessionText = document.getElementById('nav-session-text');
+        const authUserName = document.getElementById('auth-user-name');
+        const authUserRole = document.getElementById('auth-user-role');
+
+        if (this.session && this.session.isAuthenticated) {
+          // Show Authenticated Screen
+          if (screenLogin) screenLogin.style.display = 'none';
+          if (screenAuth) screenAuth.style.display = 'flex';
+
+          // Update Navbar Status
+          if (beacon) beacon.classList.add('online');
+          if (sessionText) {
+            sessionText.innerHTML = `Connected • <strong style="color: #ffffff;">${this.session.email}</strong>`;
+          }
+
+          // Update Welcome Card
+          if (authUserName) authUserName.textContent = this.session.displayName;
+          if (authUserRole) authUserRole.textContent = `${this.session.role} • Sector 4`;
+        } else {
+          // Show Login Screen
+          if (screenLogin) screenLogin.style.display = 'flex';
+          if (screenAuth) screenAuth.style.display = 'none';
+
+          // Update Navbar Status
+          if (beacon) beacon.classList.remove('online');
+          if (sessionText) {
+            sessionText.textContent = 'Demo Mode • Not Authenticated';
+          }
+        }
+      }
+    };
+
+    // Initialize application on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      AppState.init();
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroLoop — Autonomous Drone Delivery Network</title>
+  
+  <!-- Typography: Lora (Headings) and Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       AEROLOOP DESIGN SYSTEM: MODERN AEROSPACE DARK THEME
+       ========================================================================== */
+    :root {
+      --bg-canvas: #080d19;
+      --bg-surface: #0d1527;
+      --glass-bg: rgba(15, 23, 42, 0.78);
+      --glass-card: rgba(15, 23, 42, 0.88);
+      --accent-cyan: #00e5ff;
+      --accent-teal: #00b4d8;
+      --accent-blue: #0284c7;
+      --border-cyan: rgba(0, 229, 255, 0.18);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --status-green: #10b981;
+      --status-amber: #f59e0b;
+      --status-red: #f43f5e;
+      --font-heading: 'Lora', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --glow-cyan: 0 0 25px rgba(0, 229, 255, 0.25);
+      --glow-ambient: radial-gradient(circle at 50% 0%, rgba(0, 229, 255, 0.12) 0%, transparent 60%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Background Effects */
+    .bg-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-radial-glow {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0, 229, 255, 0.15) 0%, rgba(0, 180, 216, 0.05) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+
+    /* Top Navigation Bar */
+    #main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(8, 13, 25, 0.85);
+      border-bottom: 1px solid var(--border-cyan);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-logo-wrap {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(0, 180, 216, 0.05));
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
+    }
+
+    .brand-logo-wrap svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent-cyan);
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tagline {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      letter-spacing: 0.03em;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulseAnimation 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseAnimation {
+      0%, 100% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* Right Session Status */
+    #nav-user-status {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0.4rem 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+    }
+
+    .beacon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #64748b;
+    }
+
+    .beacon.online {
+      background-color: var(--status-green);
+      box-shadow: 0 0 10px var(--status-green);
+    }
+
+    /* Viewport Area */
+    #app-view {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Screen Views */
+    .screen {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Footer */
+    footer.app-footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8, 13, 25, 0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 640px) {
+      #main-nav {
+        padding: 0 1rem;
+      }
+      .brand-tagline, .nav-center {
+        display: none;
+      }
+      footer.app-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient Grids & Radials -->
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="bg-radial-glow" aria-hidden="true"></div>
+
+  <!-- Top Navigation Header -->
+  <header id="main-nav">
+    <a href="#" class="nav-brand" aria-label="AeroLoop Home">
+      <div class="brand-logo-wrap">
+        <!-- Stylized Drone Loop Vector Icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <span class="brand-name">AeroLoop</span>
+        <span class="brand-tagline">Autonomous Aerial Logistics</span>
+      </div>
+    </a>
+
+    <div class="nav-center">
+      <div class="phase-badge">
+        <span class="pulse-dot"></span>
+        <span>MVP • Phase 1: Authentication</span>
+      </div>
+    </div>
+
+    <div id="nav-user-status">
+      <div class="status-pill" id="nav-session-pill">
+        <span class="beacon" id="nav-beacon"></span>
+        <span id="nav-session-text">Demo Mode • Not Authenticated</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Central Viewport -->
+  <main id="app-view">
+    <!-- Screen components will mount here -->
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <span>AeroLoop Prototype • IEB Section C Milestone 2</span>
+    <span>Simulated Autonomous Delivery Portal</span>
+  </footer>
+</body>
+</html>

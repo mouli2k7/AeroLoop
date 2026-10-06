@@ -239,33 +239,380 @@
       justify-content: center;
     }
 
-    /* Footer */
-    footer.app-footer {
-      position: relative;
-      z-index: 10;
-      border-top: 1px solid var(--border-subtle);
-      padding: 1.25rem 2rem;
-      font-size: 0.78rem;
-      color: var(--text-subtle);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(8, 13, 25, 0.6);
-      backdrop-filter: blur(8px);
+    /* ==========================================================================
+       LOGIN VIEW STYLES
+       ========================================================================== */
+    .login-card-wrapper {
+      width: 100%;
+      max-width: 480px;
+      perspective: 1000px;
     }
 
-    @media (max-width: 640px) {
-      #main-nav {
-        padding: 0 1rem;
+    .login-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.25rem;
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 35px -5px rgba(0, 229, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-teal), transparent);
+    }
+
+    /* Radar Header Icon */
+    .card-header-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      text-align: center;
+    }
+
+    .radar-beacon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.2) 0%, rgba(0, 229, 255, 0.03) 70%);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+    }
+
+    .radar-beacon-wrap svg {
+      width: 32px;
+      height: 32px;
+      color: var(--accent-cyan);
+      z-index: 2;
+    }
+
+    .radar-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 229, 255, 0.5);
+      animation: radarPing 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+
+    .radar-ring:nth-child(2) {
+      animation-delay: 1.25s;
+    }
+
+    @keyframes radarPing {
+      0% {
+        transform: scale(0.8);
+        opacity: 0.9;
       }
-      .brand-tagline, .nav-center {
-        display: none;
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
       }
-      footer.app-footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-      }
+    }
+
+    .login-title {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+
+    .login-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      max-width: 340px;
+    }
+
+    /* Demo Quick-Fill Section */
+    .demo-chips-box {
+      background: rgba(0, 229, 255, 0.04);
+      border: 1px dashed rgba(0, 229, 255, 0.22);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-chips-header {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chips-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .persona-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+      user-select: none;
+    }
+
+    .persona-chip:hover {
+      background: rgba(0, 229, 255, 0.15);
+      border-color: var(--accent-cyan);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
+    }
+
+    .persona-chip:active {
+      transform: translateY(0);
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+      letter-spacing: 0.02em;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 1rem;
+      width: 18px;
+      height: 18px;
+      color: var(--text-subtle);
+      pointer-events: none;
+      transition: color 0.2s ease;
+    }
+
+    .form-input {
+      width: 100%;
+      background: rgba(8, 13, 25, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+    }
+
+    .form-input::placeholder {
+      color: var(--text-subtle);
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.25), inset 0 0 8px rgba(0, 229, 255, 0.05);
+      background: rgba(13, 21, 39, 0.9);
+    }
+
+    .form-input:focus + .input-icon,
+    .input-wrapper:focus-within .input-icon {
+      color: var(--accent-cyan);
+    }
+
+    /* Password Toggle Button */
+    .btn-toggle-pw {
+      position: absolute;
+      right: 0.85rem;
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 4px;
+      transition: color 0.2s;
+    }
+
+    .btn-toggle-pw:hover {
+      color: var(--accent-cyan);
+    }
+
+    .btn-toggle-pw svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Remember me & Options */
+    .form-row-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      background: rgba(8, 13, 25, 0.8);
+      cursor: pointer;
+      position: relative;
+      display: grid;
+      place-content: center;
+      transition: all 0.2s;
+    }
+
+    .checkbox-label input[type="checkbox"]:checked {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    .checkbox-label input[type="checkbox"]:checked::after {
+      content: '';
+      width: 4px;
+      height: 8px;
+      border: solid #080d19;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+
+    /* Primary Submit Button */
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, #0099ff 100%);
+      color: #060b17;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.35);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 28px rgba(0, 229, 255, 0.5);
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(0, 229, 255, 0.3);
+    }
+
+    .btn-spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(6, 11, 23, 0.3);
+      border-top-color: #060b17;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .btn-primary.loading .btn-text {
+      visibility: hidden;
+    }
+
+    .btn-primary.loading .btn-spinner {
+      display: block;
+      position: absolute;
+    }
+
+    /* Error Alert */
+    .form-alert {
+      display: none;
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #fca5a5;
+      font-size: 0.8rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-alert.visible {
+      display: flex;
+    }
+
+    /* Transparency Disclaimer */
+    .transparency-note {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
   </style>
 </head>
@@ -307,7 +654,118 @@
 
   <!-- Central Viewport -->
   <main id="app-view">
-    <!-- Screen components will mount here -->
+    <!-- SCREEN 1: LOGIN -->
+    <section id="screen-login" class="screen">
+      <div class="login-card-wrapper">
+        <div class="login-card">
+          <!-- Radar Header Icon -->
+          <div class="card-header-icon">
+            <div class="radar-beacon-wrap">
+              <span class="radar-ring"></span>
+              <span class="radar-ring"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+                <path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6z"></path>
+                <circle cx="12" cy="12" r="2"></circle>
+                <line x1="12" y1="2" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <h1 class="login-title">Drone Logistics Portal</h1>
+            <p class="login-subtitle">Autonomous dark-store resupply & aerial courier dispatch system</p>
+          </div>
+
+          <!-- Demo Quick-Fill Chips -->
+          <div class="demo-chips-box">
+            <div class="demo-chips-header">
+              <span>Quick-Fill Test Personas</span>
+              <span>1-Click Demo</span>
+            </div>
+            <div class="chips-group">
+              <button type="button" class="persona-chip" data-email="darkstore.hub4@aeroloop.io" data-name="Dark Store Manager (Hub 4)" data-role="Dark Store Operations">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Dark Store Manager
+              </button>
+              <button type="button" class="persona-chip" data-email="fleet.central@aeroloop.io" data-name="Central Warehouse Ops" data-role="Fleet Dispatcher">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                Warehouse Fleet Ops
+              </button>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="login-alert" class="form-alert" role="alert">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <span id="login-alert-text">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label for="login-email" class="form-label">Operator Work Email</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <input 
+                  type="email" 
+                  id="login-email" 
+                  name="email" 
+                  class="form-input" 
+                  placeholder="ops@aeroloop.io" 
+                  autocomplete="username"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="login-password" class="form-label">Access Passcode</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <input 
+                  type="password" 
+                  id="login-password" 
+                  name="password" 
+                  class="form-input" 
+                  placeholder="••••••••••••" 
+                  autocomplete="current-password"
+                  required
+                >
+                <button type="button" id="btn-toggle-password" class="btn-toggle-pw" aria-label="Toggle password visibility">
+                  <svg id="pw-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-row-meta">
+              <label class="checkbox-label">
+                <input type="checkbox" id="login-remember" checked>
+                <span>Remember session</span>
+              </label>
+              <span style="color: var(--text-subtle);">BVLOS Clearance Lv.2</span>
+            </div>
+
+            <button type="submit" id="btn-login-submit" class="btn-primary">
+              <span class="btn-text">Enter Flight Portal →</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <!-- Transparency Notice -->
+          <div class="transparency-note">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            <span>Wizard-of-Oz Simulation • Any credentials accepted for review</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- App Footer -->
